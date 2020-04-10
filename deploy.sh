@@ -4,7 +4,6 @@ set -e
 
 # Check for required environment variables and make sure they are setup
 : ${PROJECT_TYPE?"PROJECT_TYPE Missing"} # theme|plugin
-: ${WPE_INSTALL?"WPE_INSTALL Missing"}   # subdomain for wpengine install (Legacy single environment setup)
 : ${REPO_NAME?"REPO_NAME Missing"}       # repo name (Typically the folder name of the project)
 
 CI_BRANCH=${GITHUB_REF##*/}
@@ -33,9 +32,6 @@ git config --global core.sshCommand "ssh -i $WPE_SSH_KEY_PRIVATE_PATH -o UserKno
 
 # Set repo based on current branch, by default master=production, develop=staging
 # @todo support custom branches
-
-# This is considered legacy wpengine setup and should be deprecated. We'll keep this workflow in place for backwards compatibility.
-target_wpe_install=${WPE_INSTALL}
 
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
 if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL_PROD" ]]
