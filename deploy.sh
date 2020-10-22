@@ -34,7 +34,7 @@ git config --global core.sshCommand "ssh -i $WPE_SSH_KEY_PRIVATE_PATH -o UserKno
 # @todo support custom branches
 
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
-if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL_PROD" ]]
+if [[ "$CI_BRANCH" == "main" && -n "$WPE_INSTALL_PROD" ]]
 then
     target_wpe_install=${WPE_INSTALL_PROD}
 fi
