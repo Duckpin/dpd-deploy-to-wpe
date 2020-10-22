@@ -39,6 +39,11 @@ then
     target_wpe_install=${WPE_INSTALL_PROD}
 fi
 
+if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL_PROD" ]]
+then
+    target_wpe_install=${WPE_INSTALL_PROD}
+fi
+
 if [[ "$CI_BRANCH" == "staging" && -n "$WPE_INSTALL_STAGE" ]]
 then
     target_wpe_install=${WPE_INSTALL_STAGE}
