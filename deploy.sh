@@ -30,11 +30,16 @@ git config --global user.email "actions@github.com"
 git config --global user.name "Git Actions"
 git config --global core.sshCommand "ssh -i $WPE_SSH_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
 
-# Set repo based on current branch, by default master=production, develop=staging
+# Set repo based on current branch, by default master=production, main=production, develop=staging
 # @todo support custom branches
 
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
 if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL_PROD" ]]
+then
+    target_wpe_install=${WPE_INSTALL_PROD}
+fi
+
+if [[ "$CI_BRANCH" == "main" && -n "$WPE_INSTALL_PROD" ]]
 then
     target_wpe_install=${WPE_INSTALL_PROD}
 fi
